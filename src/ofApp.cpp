@@ -77,6 +77,79 @@ void ofApp::number_4onMousePressed(float & e){
 	pd.addFloat(e);
 	pd.finishList(patch.dollarZeroStr()+"-fromOF");
 }
+
+//--------------------------------------------------------------
+void ofApp::number_5onMousePressed(float & e){
+	pd.startMessage();
+	pd.addSymbol("velocity");
+	pd.addFloat(e);
+	pd.finishList(patch.dollarZeroStr()+"-fromOF");
+}
+
+//--------------------------------------------------------------
+void ofApp::number_6onMousePressed(float & e){
+	pd.startMessage();
+	pd.addSymbol("transpose");
+	pd.addFloat(e);
+	pd.finishList(patch.dollarZeroStr()+"-fromOF");
+}
+
+//--------------------------------------------------------------
+void ofApp::number_7onMousePressed(float & e){
+	pd.startMessage();
+	pd.addSymbol("rand");
+	pd.addFloat(e);
+	pd.finishList(patch.dollarZeroStr()+"-fromOF");
+}
+
+//--------------------------------------------------------------
+void ofApp::number_8onMousePressed(float & e){
+	pd.startMessage();
+	pd.addSymbol("root");
+	pd.addFloat(e);
+	pd.finishList(patch.dollarZeroStr()+"-fromOF");
+}
+
+//--------------------------------------------------------------
+void ofApp::hRadio_1onMousePressed(float & e){
+	pd.startMessage();
+	pd.addSymbol("scale");
+	pd.addFloat(e);
+	pd.finishList(patch.dollarZeroStr()+"-fromOF");
+	if(e == 0)
+	label_16.symbol = "Scale: Major";
+	if(e == 1)
+	label_16.symbol = "Scale: Middle East Minor";
+	if(e == 2)
+	label_16.symbol = "Scale: Lydian dominant";
+	if(e == 3)
+	label_16.symbol = "Scale: Harmonic minor";
+	if(e == 4)
+	label_16.symbol = "Scale: Chromatic blues";
+	if(e == 5)
+	label_16.symbol = "Scale: Whole tones";
+	if(e == 6)
+	label_16.symbol = "Scale: Diminished";
+	if(e == 7)
+	label_16.symbol = "Scale: Pentatonic";
+	if(e == 8)
+	label_16.symbol = "Scale: Pentatonic blues";
+	if(e == 9)
+	label_16.symbol = "Scale: Gaku Joshi";
+	if(e == 10)
+	label_16.symbol = "Scale: In Sen";
+	if(e == 11)
+	label_16.symbol = "Scale: Hira Joshi";
+	if(e == 12)
+	label_16.symbol = "Scale: Yo";
+	if(e == 13)
+	label_16.symbol = "Scale: Ryo";
+	if(e == 14)
+	label_16.symbol = "Scale: Iwato";
+	if(e == 15)
+	label_16.symbol = "Scale: Tamuke";
+}
+
 //--------------------------------------------------------------
 void ofApp::bang_1onMousePressed(bool & e){
 	pd.startMessage();
@@ -110,18 +183,23 @@ void ofApp::bang_4onMousePressed(bool & e){
 }
 //--------------------------------------------------------------
 void ofApp::setup() {
-	//ofAddListener(hSlider_1.onMousePressed, this, &ofApp::hSlider_1onMousePressed);
+	ofBackground(100, 100, 100);
 	ofAddListener(toggle_1.onMousePressed, this, &ofApp::toggle_1onMousePressed);
 	ofAddListener(number_1.onMousePressed, this, &ofApp::number_1onMousePressed);
 	ofAddListener(number_2.onMousePressed, this, &ofApp::number_2onMousePressed);
 	ofAddListener(number_3.onMousePressed, this, &ofApp::number_3onMousePressed);
 	ofAddListener(number_4.onMousePressed, this, &ofApp::number_4onMousePressed);
+	ofAddListener(number_5.onMousePressed, this, &ofApp::number_5onMousePressed);
+	ofAddListener(number_6.onMousePressed, this, &ofApp::number_6onMousePressed);
+	ofAddListener(number_7.onMousePressed, this, &ofApp::number_7onMousePressed);
+	ofAddListener(number_8.onMousePressed, this, &ofApp::number_8onMousePressed);
+	ofAddListener(hRadio_1.onMousePressed, this, &ofApp::hRadio_1onMousePressed);
 	ofAddListener(bang_1.onMousePressed, this, &ofApp::bang_1onMousePressed);
 	ofAddListener(bang_2.onMousePressed, this, &ofApp::bang_2onMousePressed);
 	ofAddListener(bang_3.onMousePressed, this, &ofApp::bang_3onMousePressed);
 	ofAddListener(bang_4.onMousePressed, this, &ofApp::bang_4onMousePressed);
 	ofAddListener(midiChangedEvent, this, &ofApp::midiChanged);
-	label_1.setup(20, 20, 680, 50, "Markov Generator");
+	label_1.setup(20, 20, 680, 20, "Markov Generator");
 	label_2.setup(120, 80, 200, 20, "Play");
 	label_3.setup(120, 120, 200, 20, "Beats per Minute");
 	label_4.setup(500, 120, 200, 20, "Markov order");
@@ -130,9 +208,14 @@ void ofApp::setup() {
 	label_7.setup(500, 240, 200, 20, "Random position");
 	label_8.setup(500, 280, 200, 20, "Reset");
 	label_9.setup(120, 160, 200, 20, "Note length");
-	label_10.setup(20, 240, 300, 20, "Midi in: 0 0 0");
-	label_11.setup(20, 280, 300, 20, "Midi out: 0 0 0");
+	label_10.setup(400, 360, 300, 20, "Midi in: 0 0 0");
+	label_11.setup(400, 400, 300, 20, "Midi out: 0 0 0");
 	label_12.setup(120, 200, 200, 20, "Program change");
+	label_13.setup(120, 240, 200, 20, "Velocity");
+	label_14.setup(120, 280, 200, 20, "Transpose");
+	label_15.setup(120, 320, 200, 20, "Random");
+	label_16.setup(20, 360, 300, 20, "Scale: Major");
+	label_17.setup(120, 440, 200, 20, "Root");
 	toggle_1.setup(20, 80, 20);
 	bang_1.setup(400, 160, 20);
 	bang_2.setup(400, 200, 20);
@@ -145,9 +228,17 @@ void ofApp::setup() {
 	number_3.setup(20, 160, 80, 20, 50, 2000);
 	number_3.value = 500;
 	number_4.setup(20, 200, 80, 20, 0, 127);
-	number_4.value = 17;
-	ofSetFrameRate(60);
-	ofSetVerticalSync(true);
+	number_4.value = 4;
+	number_5.setup(20, 240, 80, 20, 0, 127);
+	number_5.value = 50;
+	number_6.setup(20, 280, 80, 20, -24, 24);
+	number_6.value = 0;
+	number_7.setup(20, 320, 80, 20, 0, 10);
+	number_7.value = 0;
+	number_8.setup(20, 440, 80, 20, 0, 11);
+	number_8.value = 0;
+	hRadio_1.setup(20, 400, 20, 15);
+	
 	//ofSetLogLevel("Pd", OF_LOG_VERBOSE); // see verbose info inside
 
 	// double check where we are ...
@@ -226,6 +317,8 @@ void ofApp::update() {
 
 //--------------------------------------------------------------
 void ofApp::draw() {
+	ofSetColor(50, 50, 50);
+        ofDrawRectangle(10, 10, 700, 460);
 	label_1.draw();
 	label_2.draw();
 	label_3.draw();
@@ -238,10 +331,20 @@ void ofApp::draw() {
 	label_10.draw();
 	label_11.draw();
 	label_12.draw();
+	label_13.draw();
+	label_14.draw();
+	label_15.draw();
+	label_16.draw();
+	label_17.draw();
 	number_1.draw();
 	number_2.draw();
 	number_3.draw();
 	number_4.draw();
+	number_5.draw();
+	number_6.draw();
+	number_7.draw();
+	number_8.draw();
+	hRadio_1.draw();
 	toggle_1.draw();
 	bang_1.draw();
 	bang_2.draw();
@@ -372,7 +475,7 @@ void ofApp::receiveList(const std::string &dest, const pd::List &list) {
 	EM_ASM_(
 	var data = new Uint32Array(HEAPU32.buffer, $0, $1);
 	sendMIDI(data), array, lengthOfArray);
-	label_11.symbol = "Control change: " + ofToString(outChannel) + " " + ofToString(outPitch);
+	label_12.symbol = "Program change: " + ofToString(outChannel) + " " + ofToString(outPitch);
 	}
 	// cout << list.toString() << endl;
 }

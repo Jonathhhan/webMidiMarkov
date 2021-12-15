@@ -11,12 +11,14 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxPd.h"
+
 #include "hSlider.h"
 #include "bang.h"
 #include "toggle.h"
 #include "label.h"
 #include "number.h"
-#include "ofxPd.h"
+#include "hRadio.h"
 
 // a namespace for the Pd types
 using namespace pd;
@@ -64,11 +66,16 @@ class ofApp : public ofBaseApp, public PdReceiver, public PdMidiReceiver {
 		void number_2onMousePressed(float & e);
 		void number_3onMousePressed(float & e);
 		void number_4onMousePressed(float & e);
+		void number_5onMousePressed(float & e);
+		void number_6onMousePressed(float & e);
+		void number_7onMousePressed(float & e);
+		void number_8onMousePressed(float & e);
 		void toggle_1onMousePressed(bool & e);
 		void bang_1onMousePressed(bool & e);
 		void bang_2onMousePressed(bool & e);
 		void bang_3onMousePressed(bool & e);
-		void bang_4onMousePressed(bool & e);		
+		void bang_4onMousePressed(bool & e);	
+		void hRadio_1onMousePressed(float & e);		
 		void midiChanged(std::string & value);
 
 		ofxPd pd;
@@ -85,6 +92,10 @@ class ofApp : public ofBaseApp, public PdReceiver, public PdMidiReceiver {
 		class number number_2;
 		class number number_3;
 		class number number_4;
+		class number number_5;
+		class number number_6;
+		class number number_7;
+		class number number_8;
 		class label label_1;	
 		class label label_2;
 		class label label_3;
@@ -97,5 +108,11 @@ class ofApp : public ofBaseApp, public PdReceiver, public PdMidiReceiver {
 		class label label_10;
 		class label label_11;
 		class label label_12;
+		class label label_13;
+		class label label_14;
+		class label label_15;
+		class label label_16;
+		class label label_17;
+		class hRadio hRadio_1;
 		int midiChan;
 };
