@@ -6,11 +6,13 @@ function midiMessageReceived( ev ) {
   Module.midiIn(ev.data);
   }
   
-function sendMIDI(ev) { 
-  const device = midiOut; 
-  console.log("MIDI out: " + ev[0] + " " + ev[1] + " " + ev[2]) ;
-  device.send(ev);  
-  }
+function sendMIDI(ev) {
+    if (midiOut) {
+        const device = midiOut;
+        console.log("MIDI out: " + ev[0] + " " + ev[1] + " " + ev[2]);
+        device.send(ev);
+    }
+}
 
 var inSelectMIDI = null;
 var outSelectMIDI = null
